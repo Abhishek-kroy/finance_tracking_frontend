@@ -33,7 +33,7 @@ const AddExpenseForm = ({ mode, setMode }) => {
         };
 
         fetchBudgets();
-    }, []);
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,7 +56,7 @@ const AddExpenseForm = ({ mode, setMode }) => {
                 },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-            setMessage(`Expense added successfully! Budget updated.`);
+            setMessage(`Expense added successfully! Budget updated. ${response.data.message}`);
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error adding expense');
         }

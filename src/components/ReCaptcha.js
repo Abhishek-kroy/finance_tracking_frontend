@@ -5,24 +5,28 @@ const ReCaptchaV2Label = ({ onVerify }) => {
 
   useEffect(() => {
     // Dynamically load the reCAPTCHA script
-    if (!window.grecaptcha) {
-      const script = document.createElement("script");
-      script.src = "https://www.google.com/recaptcha/api.js";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
+    function funct() {
 
-      script.onload = () => {
+      if (!window.grecaptcha) {
+        const script = document.createElement("script");
+        script.src = "https://www.google.com/recaptcha/api.js";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+  
+        script.onload = () => {
+          waitForGrecaptcha().then(renderRecaptcha);
+        };
+  
+        return () => {
+          document.body.removeChild(script);
+        };
+      } else {
         waitForGrecaptcha().then(renderRecaptcha);
-      };
-
-      return () => {
-        document.body.removeChild(script);
-      };
-    } else {
-      waitForGrecaptcha().then(renderRecaptcha);
-    }
-  }, []);
+      }
+    };
+    funct();
+  },[onVerify]);
 
   // Function to wait for the grecaptcha object to be available
   const waitForGrecaptcha = () => {
