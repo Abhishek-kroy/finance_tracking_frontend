@@ -33,7 +33,7 @@ const AddExpenseForm = ({ mode, setMode }) => {
         };
 
         fetchBudgets();
-    });
+    }   );
 
     const handleSubmit = async (e) => {
         e.preventDefault();
