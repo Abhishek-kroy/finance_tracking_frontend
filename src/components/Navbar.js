@@ -33,6 +33,7 @@ const Navbar = ({ mode, setMode }) => {
           <Link to="/budget" className="hover:text-gray-300">Budget Creation</Link>
           <Link to="/budgetview" className="hover:text-gray-300">View Budget</Link>
           <Link to="/expenses" className="hover:text-gray-300">Expense Tracking</Link>
+          <Link to="/generateresponse" className="hover:text-gray-300">Report</Link>
           <Link to="/dashboard" className="hover:text-gray-300">DashBoard</Link>
           <Link to="/login" className="hover:text-gray-300">Login</Link>
           
@@ -54,6 +55,7 @@ const Navbar = ({ mode, setMode }) => {
           <Link to="/budget" className="block text-xl py-2">Budget Creation</Link>
           <Link to="/budgetview" className="block text-xl py-2">View Budget</Link>
           <Link to="/expenses" className="block text-xl py-2">Expense Tracking</Link>
+          <Link to="/generateresponse" className="block text-xl py-2">Report</Link>
           <Link to="/dashboard" className="block text-xl py-2">DashBoard</Link>
           <Link to="/login" className="block text-xl py-2">Login</Link>
 

@@ -9,6 +9,7 @@ import BudgetForm from "./pages/BudgetForm";
 import BudgetView from "./pages/BudgetView"
 import AddExpenseForm from "./pages/AddExpenseForm";
 import Dashboard from "./pages/Dashboard";
+import GenerateReport from './pages/GenerateReport'
 
 const App = () => {
   const [mode,setMode]=useState("light");
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard mode={mode} setMode={setMode}/>} />
         {/* <Route path="/tax" element={<div>Tax Page</div>} /> */}
         <Route path="/budgetview" element={<BudgetView mode={mode} setMode={setMode}/>} />
+        <Route path="/generateresponse" element={<GenerateReport mode={mode} setMode={setMode}/>} />
         <Route path="/login" element={<Login mode={mode} setMode={setMode}/>} />
         <Route path="/signup" element={<Signup mode={mode} setMode={setMode}/>} />
       </Routes>

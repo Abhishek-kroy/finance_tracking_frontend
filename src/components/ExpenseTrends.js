@@ -46,11 +46,11 @@ const ExpenseTrends = ({ mode }) => {
                 });
     
                 setExpenses(response.data.expenses);
+                console.log(response.data.expenses);
             } catch (error) {
                 console.error('Error fetching expenses:', error);
             }
-        };
-    
+        }; 
         fetchExpenses();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Empty dependency array ensures one-time execution    
