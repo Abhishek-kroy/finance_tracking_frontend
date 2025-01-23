@@ -53,7 +53,7 @@ const Signup = ({ mode, setMode }) => {
         setSuccessMessage("");
 
         try {
-            const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com:4000/api/v1/verifyOtp", { email, otp });
+            const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/verifyOtp", { email, otp });
             if (response.data.success) {
                 setOtpVerified(true);
                 setSuccessMessage("OTP verified successfully.");
