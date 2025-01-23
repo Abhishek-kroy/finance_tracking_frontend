@@ -1,60 +1,116 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
-const Signup = ({mode,setMode}) => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [error, setError] = useState("");
+const Signup = ({ mode, setMode }) => {
+    const [name, setName] = useState(""); // Name state
+    const [email, setEmail] = useState(""); // Email state
+    const [password, setPassword] = useState(""); // Password state
+    const [otp, setOtp] = useState(""); // OTP state
+    const [otpSent, setOtpSent] = useState(false); // OTP sent state
+    const [otpVerified, setOtpVerified] = useState(false); // OTP verified state
+    const [loading, setLoading] = useState(false); // Loading state
+    const [error, setError] = useState(""); // Error message
+    const [successMessage, setSuccessMessage] = useState(""); // Success message
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        // Check if all fields are filled
-        if (!name || !email || !password || !confirmPassword) {
-            setError("All fields are required!");
+    const sendOtp = async () => {
+        if (!email) {
+            setError("Please enter a valid email.");
             return;
         }
-    
-        // Check if passwords match
-        if (password !== confirmPassword) {
-            setError("Passwords do not match!");
-            return;
-        }
-    
+
+        setLoading(true);
+        setError("");
+        setSuccessMessage("");
+
         try {
-            // Send signup data to the backend
-            const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/register", {
-                name,
-                email,
-                password,
-            });
-    
-            // Handle successful signup
+            const response = await axios.post(`https://finance-tracker-backend-0h5z.onrender.com/api/v1/sendOtp`, { email });
             if (response.data.success) {
-                // Redirect to login page after successful signup
-                navigate("/login");
+                setOtpSent(true);
+                setSuccessMessage("OTP sent to your email.");
             } else {
-                setError(response.data.message); // Set the error message from the response
+                setError(response.data.message || "Failed to send OTP. Please try again.");
             }
         } catch (err) {
-            // Handle any errors from the backend or during the request
-            console.error("Signup Error: ", err);
-            setError("An error occurred. Please try again later.");
+            console.error("Error sending OTP:", err);
+            setError("An error occurred while sending OTP. Please try again.");
+        } finally {
+            setLoading(false);
         }
-    };    
+    };
+
+    const verifyOtp = async () => {
+        if (!otp) {
+            setError("Please enter the OTP.");
+            return;
+        }
+
+        setLoading(true);
+        setError("");
+        setSuccessMessage("");
+
+        try {
+            const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com:4000/api/v1/verifyOtp", { email, otp });
+            if (response.data.success) {
+                setOtpVerified(true);
+                setSuccessMessage("OTP verified successfully.");
+            } else {
+                setError(response.data.message || "Invalid OTP. Please try again.");
+            }
+        } catch (err) {
+            console.error("Error verifying OTP:", err);
+            setError("An error occurred while verifying OTP. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSignup = async () => {
+        if (!name) {
+            setError("Please enter your name.");
+            return;
+        }
+
+        if (!password) {
+            setError("Please enter a password.");
+            return;
+        }
+
+        setLoading(true);
+        setError("");
+        setSuccessMessage("");
+
+        try {
+            const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/register", { name, email, password });
+            if (response.data.success) {
+                setSuccessMessage("Signup successful! You can now log in.");
+                navigate('/login')
+            } else {
+                setError(response.data.message || "Signup failed. Please try again.");
+            }
+        } catch (err) {
+            console.error("Error during signup:", err);
+            setError("An error occurred during signup. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-100">
-            <Navbar mode={mode} setMode={setMode}/>
-            <div className="flex-grow min-w-[40vw] mb-4 mx-auto mt-10 p-5 border rounded-lg shadow-lg bg-white">
-                <h2 className="text-2xl font-bold text-center mb-4">Sign Up</h2>
-                <form onSubmit={handleSubmit}>
+        <div>
+            <Navbar />
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+                <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
+                    <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
+
+                    {/* Display error or success messages */}
+                    {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                    {successMessage && <p className="text-green-500 text-sm mb-4">{successMessage}</p>}
+
+                    {/* Name input */}
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Name</label>
                         <input
@@ -62,10 +118,12 @@ const Signup = ({mode,setMode}) => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded-md"
+                            disabled={otpSent}
                             required
                         />
                     </div>
 
+                    {/* Email input */}
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700">Email</label>
                         <input
@@ -73,52 +131,71 @@ const Signup = ({mode,setMode}) => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded-md"
+                            disabled={otpSent}
                             required
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded-md"
-                            required
-                        />
-                    </div>
+                    {/* Password input */}
+                    {(
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Password</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full p-2 border border-gray-300 rounded-md"
+                                required
+                            />
+                        </div>
+                    )}
 
-                    <div className="mb-6">
-                        <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded-md"
-                            required
-                        />
-                    </div>
+                    {/* Send OTP button */}
+                    {!otpSent && (
+                        <button
+                            onClick={sendOtp}
+                            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                            disabled={loading}
+                        >
+                            {loading ? "Sending OTP..." : "Send OTP"}
+                        </button>
+                    )}
 
-                    {error && <p className="text-red-500 text-xs mb-4">{error}</p>}
+                    {/* OTP input */}
+                    {otpSent && !otpVerified && (
+                        <div className="mt-4">
+                            <label className="block text-sm font-medium text-gray-700">Enter OTP</label>
+                            <input
+                                type="text"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                className="w-full p-2 border border-gray-300 rounded-md"
+                                maxLength={6}
+                                required
+                            />
+                            <button
+                                onClick={verifyOtp}
+                                className="w-full mt-4 bg-green-500 text-white p-2 rounded-md hover:bg-green-600"
+                                disabled={loading}
+                            >
+                                {loading ? "Verifying OTP..." : "Verify OTP"}
+                            </button>
+                        </div>
+                    )}
 
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
-                    >
-                        Sign Up
-                    </button>
-                </form>
-
-                <div className="mt-4 text-center">
-                    <p className="text-sm">
-                        Already have an account?{" "}
-                        <a href="/login" className="text-blue-500 hover:text-blue-700">
-                            Login
-                        </a>
-                    </p>
+                    {/* Signup button */}
+                    {otpVerified && (
+                        <button
+                            onClick={handleSignup}
+                            className="w-full mt-4 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                            disabled={loading}
+                        >
+                            {loading ? "Signing Up..." : "Sign Up"}
+                        </button>
+                    )}
                 </div>
             </div>
-            <Footer mode={mode}/>
+            <Footer />
         </div>
     );
 };
