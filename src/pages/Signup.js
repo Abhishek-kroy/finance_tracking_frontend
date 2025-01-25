@@ -3,7 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
 const Signup = ({ mode, setMode }) => {
     const [name, setName] = useState(""); // Name state
     const [email, setEmail] = useState(""); // Email state
@@ -27,7 +27,7 @@ const Signup = ({ mode, setMode }) => {
         setSuccessMessage("");
 
         try {
-            const response = await axios.post(`https://finance-tracker-backend-0h5z.onrender.com/api/v1/sendOtp`, { email });
+            const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/sendOtp", { email });
             if (response.data.success) {
                 setOtpSent(true);
                 setSuccessMessage("OTP sent to your email.");
@@ -101,51 +101,70 @@ const Signup = ({ mode, setMode }) => {
 
     return (
         <div>
+        <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
             <Navbar />
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-                <div className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
-                    <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-t from-gray-800 to-black">
+                <div className="bg-white bg-opacity-30 backdrop-blur-lg border border-gray-300 rounded-lg shadow-xl w-full max-w-md transition-all transform hover:scale-105 p-8">
+                    <h2 className="text-3xl font-semibold text-center text-indigo-600">Create Your Account</h2>
 
                     {/* Display error or success messages */}
-                    {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-                    {successMessage && <p className="text-green-500 text-sm mb-4">{successMessage}</p>}
+                    {error && (
+                        <p className="text-red-600 text-sm mt-4 bg-red-100 p-2 rounded-md border border-red-200">
+                            {error}
+                        </p>
+                    )}
+                    {successMessage && (
+                        <p className="text-green-600 text-sm mt-4 bg-green-100 p-2 rounded-md border border-green-200">
+                            {successMessage}
+                        </p>
+                    )}
 
                     {/* Name input */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Name</label>
+                    <div className="mt-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+                            placeholder="Enter your full name"
                             disabled={otpSent}
-                            required
                         />
                     </div>
 
                     {/* Email input */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Email</label>
+                    <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded-md"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+                            placeholder="Enter your email address"
                             disabled={otpSent}
-                            required
                         />
                     </div>
 
                     {/* Password input */}
-                    {(
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700">Password</label>
+                    {!otpSent && (
+                        <div className="mt-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                             <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full p-2 border border-gray-300 rounded-md"
-                                required
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+                                placeholder="Create a password"
                             />
                         </div>
                     )}
@@ -154,7 +173,7 @@ const Signup = ({ mode, setMode }) => {
                     {!otpSent && (
                         <button
                             onClick={sendOtp}
-                            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                            className="w-full mt-6 bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                             disabled={loading}
                         >
                             {loading ? "Sending OTP..." : "Send OTP"}
@@ -163,19 +182,19 @@ const Signup = ({ mode, setMode }) => {
 
                     {/* OTP input */}
                     {otpSent && !otpVerified && (
-                        <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-700">Enter OTP</label>
+                        <div className="mt-6">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
                             <input
                                 type="text"
                                 value={otp}
                                 onChange={(e) => setOtp(e.target.value)}
-                                className="w-full p-2 border border-gray-300 rounded-md"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
                                 maxLength={6}
-                                required
+                                placeholder="6-digit OTP"
                             />
                             <button
                                 onClick={verifyOtp}
-                                className="w-full mt-4 bg-green-500 text-white p-2 rounded-md hover:bg-green-600"
+                                className="w-full mt-4 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
                                 disabled={loading}
                             >
                                 {loading ? "Verifying OTP..." : "Verify OTP"}
@@ -187,7 +206,7 @@ const Signup = ({ mode, setMode }) => {
                     {otpVerified && (
                         <button
                             onClick={handleSignup}
-                            className="w-full mt-4 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                            className="w-full mt-6 bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                             disabled={loading}
                         >
                             {loading ? "Signing Up..." : "Sign Up"}

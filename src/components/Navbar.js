@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Using react-router for navigation (you can adjust if needed)
 import { FaBars, FaTimes } from "react-icons/fa"; // Hamburger menu and close icons
-import { FaMoon, FaSun } from "react-icons/fa"; // Moon and Sun icons for mode toggle
 
 const Navbar = ({ mode, setMode }) => {
   // mode is light or dark
@@ -12,7 +11,7 @@ const Navbar = ({ mode, setMode }) => {
   };
 
   const toggleMode = () => {
-    setMode(mode === "light" ? "dark" : "light"); // Toggle between light and dark mode
+    setMode(mode === "light" ? "dark" : "dark"); // Toggle between light and dark mode
   };
 
   return (
@@ -36,15 +35,6 @@ const Navbar = ({ mode, setMode }) => {
           <Link to="/generateresponse" className="hover:text-gray-300">Report</Link>
           <Link to="/dashboard" className="hover:text-gray-300">DashBoard</Link>
           <Link to="/login" className="hover:text-gray-300">Login</Link>
-          
-          {/* Mode Toggle Button */}
-          <button onClick={toggleMode} className="ml-4">
-            {mode === "light" ? (
-              <FaMoon className="text-2xl" />
-            ) : (
-              <FaSun className="text-2xl" />
-            )}
-          </button>
         </div>
       </div>
 
@@ -58,15 +48,6 @@ const Navbar = ({ mode, setMode }) => {
           <Link to="/generateresponse" className="block text-xl py-2">Report</Link>
           <Link to="/dashboard" className="block text-xl py-2">DashBoard</Link>
           <Link to="/login" className="block text-xl py-2">Login</Link>
-
-          {/* Mode Toggle Button */}
-          <button onClick={toggleMode} className="mt-4">
-            {mode === "light" ? (
-              <FaMoon className="text-2xl" />
-            ) : (
-              <FaSun className="text-2xl" />
-            )}
-          </button>
         </div>
       )}
     </nav>

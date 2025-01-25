@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = ({ mode }) => {
-  const backgroundColor = mode === 'light' ? 'bg-gray-100' : 'bg-gray-900';
+  const backgroundColor = mode === 'light' ? 'bg-gray-100' : 'bg-gradient-to-b from-black to-gray-900';
   const textColor = mode === 'light' ? 'text-gray-800' : 'text-white';
   const borderColor = mode === 'light' ? 'border-gray-300' : 'border-gray-600';
   const linkHoverColor = mode === 'light' ? 'hover:text-blue-500' : 'hover:text-blue-600';

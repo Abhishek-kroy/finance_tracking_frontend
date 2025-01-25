@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ReCaptchaV2Label from "../components/ReCaptcha"; // Update the import to the correct component
-
+import { Helmet } from "react-helmet-async";
 const Login = ({ mode, setMode }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,6 +64,17 @@ const Login = ({ mode, setMode }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
+    <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
       <Navbar mode={mode} setMode={setMode} />
 
       <div className="flex-grow min-w-[40vw] mb-4 mx-auto mt-10 p-5 border rounded-lg shadow-lg bg-white">

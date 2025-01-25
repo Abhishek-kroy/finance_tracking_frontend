@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BudgetReport from "../components/BudgetReport";
 import html2pdf from "html2pdf.js";  // Import the html2pdf library
-
+import { Helmet } from "react-helmet-async";
 const GenerateReport = ({ mode, setMode }) => {
     const [budget, setBudgets] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -125,6 +125,17 @@ const GenerateReport = ({ mode, setMode }) => {
 
     return (
         <div>
+        <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
             <Navbar mode={mode} setMode={setMode} />
             <div id="budget-report" className="min-h-screen bg-gradient-to-b from-gray-800 to-gray-400 text-white flex flex-col items-center p-6">
                 <h1 className="text-4xl font-bold mb-4">Expense Report</h1>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-
+import { Helmet } from "react-helmet-async";
 const BudgetForm = ({ mode, setMode }) => {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
@@ -75,6 +75,17 @@ const BudgetForm = ({ mode, setMode }) => {
             className={`min-h-screen flex flex-col ${mode === 'dark' ? 'bg-gradient-to-b from-gray-900 to-grey-800 text-white' : 'bg-gradient-to-b from-gray-400 to-white text-gray-800'
                 }`}
         >
+        <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
             <Navbar mode={mode} setMode={setMode} />
             <main className="flex flex-col md:flex-row flex-grow container mx-auto px-4 py-8 gap-8">
     {/* Left Section: Form */}

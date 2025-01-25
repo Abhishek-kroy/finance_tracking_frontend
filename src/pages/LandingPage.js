@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
 const LandingPage = ({ mode, setMode }) => {
   const slides = [
     {
@@ -58,6 +58,17 @@ const LandingPage = ({ mode, setMode }) => {
 
   return (
     <div className={mode === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"}>
+    <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
       {/* Navigation */}
       <Navbar mode={mode} setMode={setMode} />
 

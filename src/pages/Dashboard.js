@@ -4,7 +4,7 @@ import SpendingDistributionBar from '../components/SpendingDistributionBar';
 import ExpenseTrends from '../components/ExpenseTrends';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
+import { Helmet } from "react-helmet-async";
 const Dashboard = ({ mode, setMode }) => {
     const [loading, setLoading] = useState(true);
 
@@ -29,6 +29,17 @@ const Dashboard = ({ mode, setMode }) => {
     return (
         <div className={`min-h-screen flex flex-col ${mode === 'dark' ? 'bg-gradient-to-b from-gray-800 to-gray-400 text-white' : 'bg-gray-200 text-gray-800'}`}>
             {/* Navbar */}
+            <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
             <Navbar mode={mode} setMode={setMode} />
 
             {/* Dashboard Header */}

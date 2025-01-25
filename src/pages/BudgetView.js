@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-
+import { Helmet } from "react-helmet-async";
 const BudgetView = ({ mode, setMode }) => {
     const [budgets, setBudgets] = useState([]); // To store fetched budgets
     const [startDate, setStartDate] = useState(""); // Custom start date
@@ -91,6 +91,17 @@ const BudgetView = ({ mode, setMode }) => {
 
     return (
         <div className={`min-h-screen ${mode === 'dark' ? 'bg-gradient-to-b from-gray-900 to-grey-800 text-white' : 'bg-gradient-to-b from-gray-400 to-white text-gray-800'}`}>
+        <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
             <Navbar mode={mode} setMode={setMode} />
             <div className="container mx-auto px-4 py-8">
                 <div className={`px-4 py-6 rounded-lg `}>

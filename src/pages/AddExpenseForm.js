@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 
 const AddExpenseForm = ({ mode, setMode }) => {
     const [name, setName] = useState('');
@@ -70,6 +71,17 @@ const AddExpenseForm = ({ mode, setMode }) => {
                     : 'bg-gradient-to-b from-gray-400 to-white text-gray-800'
             } min-h-screen`}
         >
+        <Helmet>
+        <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta
+          name="description"
+          content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
+        />
+        <meta
+          name="keywords"
+          content="finance tracker, personal finance, expense management, budgeting tools"
+        />
+      </Helmet>
             <Navbar mode={mode} setMode={setMode} />
             <div
                 className={`${
