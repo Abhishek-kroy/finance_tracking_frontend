@@ -8,9 +8,6 @@ const Navbar = ({ mode, setMode }) => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  };
-
-  const toggleMode = () => {
     setMode(mode === "light" ? "dark" : "dark"); // Toggle between light and dark mode
   };
 
@@ -19,7 +16,6 @@ const Navbar = ({ mode, setMode }) => {
       <div className="flex justify-between items-center">
         <div className="text-3xl font-bold">Finance Tracker</div>
 
-        {/* Hamburger Menu (Mobile) */}
         <div className="lg:hidden">
           <button onClick={toggleMenu}>
             {menuOpen ? <FaTimes className="text-3xl" /> : <FaBars className="text-3xl" />}
