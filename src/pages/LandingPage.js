@@ -60,6 +60,7 @@ const LandingPage = ({ mode, setMode }) => {
     <div className={mode === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"}>
     <Helmet>
         <title>Finance Tracker - Your Ultimate Finance Management Tool</title>
+        <meta name="google-site-verification" content="rRdnNl2NG5D6h_Mol0q8upE7tALVCaViAsywl4o81dM" />
         <meta
           name="description"
           content="Simplify your finances with Finance Tracker. Track expenses, set budgets, and stay on top of your financial goals."
