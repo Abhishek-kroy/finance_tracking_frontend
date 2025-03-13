@@ -46,7 +46,7 @@ const Dashboard = ({ mode, setMode }) => {
         };
         
         fetchDashboardData();
-    }, [period]);
+    }, [period,navigate]);
 
     if (loading) {
         return (

@@ -116,6 +116,7 @@ const BudgetView = ({ mode, setMode }) => {
     useEffect(() => {
         // Fetch budgets for the current month on component mount
         fetchCurrentMonthBudgets();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const containerVariants = {

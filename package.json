@@ -8,6 +8,7 @@
     "axios": "^1.7.9",
     "chart.js": "^4.4.7",
     "cra-template": "1.2.0",
+    "eslint-plugin-react-hooks": "^5.2.0-canary-6aa8254b-20250312",
     "framer-motion": "^12.4.13",
     "html2pdf.js": "^0.10.2",
     "jspdf": "^2.5.2",

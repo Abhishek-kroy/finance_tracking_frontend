@@ -36,6 +36,7 @@ const Login = ({ mode, setMode }) => {
     }, 3000);
     
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleVerify = (value) => {
@@ -175,7 +176,7 @@ const Login = ({ mode, setMode }) => {
                       <label className={`block text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'} transition-colors duration-300`}>
                         Password
                       </label>
-                      <a href="#" className={`text-sm ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'} transition-colors duration-300`}>
+                      <a href="/login" className={`text-sm ${isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'} transition-colors duration-300`}>
                         Forgot Password?
                       </a>
                     </div>
