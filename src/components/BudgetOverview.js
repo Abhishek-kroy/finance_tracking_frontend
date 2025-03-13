@@ -79,6 +79,7 @@ const BudgetOverview = ({ mode }) => {
             </tr>
           </tfoot>
         </table>
+
       </div>
     </div>
   );

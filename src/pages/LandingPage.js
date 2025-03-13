@@ -6,51 +6,6 @@ import { Link } from "react-router-dom";
 import { FaChartLine, FaWallet, FaChartPie } from "react-icons/fa";
 
 const LandingPage = ({ mode, setMode }) => {
-  // const slides = [
-  //   {
-  //     image: "https://assets.ycodeapp.com/assets/app18525/images/O30b82M5XoLnXIuKHKs8lp6FaEXgy51OgyMLtdAk-published.webp",
-  //     title: "Budget Creation",
-  //     description:
-  //       "Create and manage budgets for different categories like savings, rent, utilities, and more. Stay on top of your spending!",
-  //     icon: <FaWallet className="text-4xl mb-4" />
-  //   },
-  //   {
-  //     image: "https://i.etsystatic.com/39814081/r/il/333c55/5075627972/il_fullxfull.5075627972_czri.jpg",
-  //     title: "Expense Tracking",
-  //     description:
-  //       "Track all your expenses with ease. Categorize and review your spending to make sure you're sticking to your budget.",
-  //     icon: <FaChartLine className="text-4xl mb-4" />
-  //   },
-  //   {
-  //     image: "https://i.etsystatic.com/39814081/r/il/333c55/5075627972/il_fullxfull.5075627972_czri.jpg",
-  //     title: "Reports and Insights",
-  //     description:
-  //       "Generate visual reports to understand your financial habits. View monthly and yearly summaries to improve your financial strategy.",
-  //     icon: <FaChartPie className="text-4xl mb-4" />
-  //   },
-  //   {
-  //     image: "https://i.etsystatic.com/39814081/r/il/333c55/5075627972/il_fullxfull.5075627972_czri.jpg",
-  //     title: "Tax Calculations",
-  //     description:
-  //       "Estimate your taxes based on your income and expenses. Set reminders for important filing dates and avoid penalties.",
-  //     icon: <FaCalculator className="text-4xl mb-4" />
-  //   },
-  //   {
-  //     image: "https://i.etsystatic.com/39814081/r/il/333c55/5075627972/il_fullxfull.5075627972_czri.jpg",
-  //     title: "Bank Sync",
-  //     description:
-  //       "Sync with your bank account to automatically import transactions. Categorize them for a complete overview of your finances.",
-  //     icon: <FaSyncAlt className="text-4xl mb-4" />
-  //   },
-  //   {
-  //     image: "https://i.etsystatic.com/39814081/r/il/333c55/5075627972/il_fullxfull.5075627972_czri.jpg",
-  //     title: "Secure Login",
-  //     description:
-  //       "Ensure your financial data is safe with secure authentication methods. Login securely and access your data with ease.",
-  //     icon: <FaLock className="text-4xl mb-4" />
-  //   },
-  // ];
-  // Carousel data with detailed slides
   const slides = [
     {
       image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3",
