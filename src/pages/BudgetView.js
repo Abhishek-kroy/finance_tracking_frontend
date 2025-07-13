@@ -48,7 +48,7 @@ const BudgetView = ({ mode, setMode }) => {
             }
 
             const response = await axios.get(
-                "https://finance-tracker-backend-0h5z.onrender.com/api/v1/budgets/current-month",
+                "https://financetrackerbackend-production.up.railway.app/api/v1/budgets/current-month",
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -92,7 +92,7 @@ const BudgetView = ({ mode, setMode }) => {
             }
 
             const response = await axios.get(
-                `https://finance-tracker-backend-0h5z.onrender.com/api/v1/budgets/range?startDate=${startDate}&endDate=${endDate}`,
+                `https://financetrackerbackend-production.up.railway.app/api/v1/budgets/range?startDate=${startDate}&endDate=${endDate}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }

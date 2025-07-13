@@ -23,7 +23,7 @@ const SpendingDistribution = () => {
                     return;
                 }
 
-                const response = await axios.get('https://finance-tracker-backend-0h5z.onrender.com/api/v1/budgets/current-month', {
+                const response = await axios.get('https://financetrackerbackend-production.up.railway.app/api/v1/budgets/current-month', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 

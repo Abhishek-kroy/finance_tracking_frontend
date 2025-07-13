@@ -34,7 +34,7 @@ const AddExpenseForm = ({ mode, setMode }) => {
                     return;
                 }
                 const response = await axios.get(
-                    'https://finance-tracker-backend-0h5z.onrender.com/api/v1/budgets/current-month',
+                    'https://financetrackerbackend-production.up.railway.app/api/v1/budgets/current-month',
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
                 setBudgets(response.data.budgets);
@@ -60,7 +60,7 @@ const AddExpenseForm = ({ mode, setMode }) => {
             }
             const amountSpentInt = parseInt(amount);
             const response = await axios.post(
-                'https://finance-tracker-backend-0h5z.onrender.com/api/v1/addexpense',
+                'https://financetrackerbackend-production.up.railway.app/api/v1/addexpense',
                 {
                     budgetId: category,
                     amountSpent: amountSpentInt,

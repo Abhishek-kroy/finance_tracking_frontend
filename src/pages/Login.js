@@ -65,7 +65,7 @@ const Login = ({ mode, setMode }) => {
     }
 
     try {
-      const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/login", {
+      const response = await axios.post("https://financetrackerbackend-production.up.railway.app/api/v1/login", {
         email,
         password,
         recaptchaToken: recaptchaValue,

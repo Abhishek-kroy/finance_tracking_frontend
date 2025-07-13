@@ -113,7 +113,7 @@ const ExpenseTrends = ({ mode, period = 'month' }) => {
                     return;
                 }
     
-                const response = await axios.get('https://finance-tracker-backend-0h5z.onrender.com/api/v1/getexpense', {
+                const response = await axios.get('https://financetrackerbackend-production.up.railway.app/api/v1/getexpense', {
                     params: { startDate: firstDay, endDate: lastDay },
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -141,7 +141,7 @@ const ExpenseTrends = ({ mode, period = 'month' }) => {
                     return;
                 }
     
-                const response = await axios.get('https://finance-tracker-backend-0h5z.onrender.com/api/v1/getexpense', {
+                const response = await axios.get('https://financetrackerbackend-production.up.railway.app/api/v1/getexpense', {
                     params: { startDate: firstDay, endDate: lastDay },
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -288,7 +288,7 @@ const ExpenseTrends = ({ mode, period = 'month' }) => {
                 return;
             }
             
-            const response = await axios.get('https://finance-tracker-backend-0h5z.onrender.com/api/v1/getexpense', {
+            const response = await axios.get('https://financetrackerbackend-production.up.railway.app/api/v1/getexpense', {
                 params: { startDate: startDate, endDate: endDate },
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -311,7 +311,7 @@ const ExpenseTrends = ({ mode, period = 'month' }) => {
                 const prevStartStr = prevStart.toISOString().split('T')[0];
                 const prevEndStr = prevEnd.toISOString().split('T')[0];
                 
-                const prevResponse = await axios.get('https://finance-tracker-backend-0h5z.onrender.com/api/v1/getexpense', {
+                const prevResponse = await axios.get('https://financetrackerbackend-production.up.railway.app/api/v1/getexpense', {
                     params: { startDate: prevStartStr, endDate: prevEndStr },
                     headers: { Authorization: `Bearer ${token}` }
                 });

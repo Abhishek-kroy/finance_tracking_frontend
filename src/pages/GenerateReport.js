@@ -59,7 +59,7 @@ const GenerateReport = ({ mode, setMode }) => {
             try {
                 setLoading(true);
                 const response = await axios.get(
-                    "https://finance-tracker-backend-0h5z.onrender.com/api/v1/getBudgetWithExpenses",
+                    "https://financetrackerbackend-production.up.railway.app/api/v1/getBudgetWithExpenses",
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -120,7 +120,7 @@ const GenerateReport = ({ mode, setMode }) => {
                 }
 
                 const response = await axios.post(
-                    "https://finance-tracker-backend-0h5z.onrender.com/api/v1/getairesponse",
+                    "https://financetrackerbackend-production.up.railway.app/api/v1/getairesponse",
                     promptData,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );

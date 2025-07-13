@@ -95,7 +95,7 @@ const BudgetForm = ({ mode, setMode }) => {
 
             // Send POST request to create budget (with additional fields)
             const response = await axios.post(
-                'https://finance-tracker-backend-0h5z.onrender.com/api/v1/create',
+                'https://financetrackerbackend-production.up.railway.app/api/v1/create',
                 { 
                     name, 
                     amount, 

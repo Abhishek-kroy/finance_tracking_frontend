@@ -67,7 +67,7 @@ const Signup = ({ mode, setMode }) => {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/sendOtp", {
+      const response = await axios.post("https://financetrackerbackend-production.up.railway.app/api/v1/sendOtp", {
         email,
         recaptchaToken: recaptchaValue
       });
@@ -99,7 +99,7 @@ const Signup = ({ mode, setMode }) => {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/verifyOtp", {
+      const response = await axios.post("https://financetrackerbackend-production.up.railway.app/api/v1/verifyOtp", {
         email,
         otp
       });
@@ -141,7 +141,7 @@ const Signup = ({ mode, setMode }) => {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post("https://finance-tracker-backend-0h5z.onrender.com/api/v1/register", {
+      const response = await axios.post("https://financetrackerbackend-production.up.railway.app/api/v1/register", {
         name,
         email,
         password
